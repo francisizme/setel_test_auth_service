@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common';
-import { MessagePattern } from '@nestjs/microservices';
+import { MessagePattern, Payload } from '@nestjs/microservices';
 
 import { UserService } from './user.service';
 import { IUser } from './interfaces/user.interface';
@@ -9,7 +9,7 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @MessagePattern('verifyToken')
-  async getUserByTokenStr(token: string): Promise<IUser> {
+  async getUserByTokenStr(@Payload() token: string): Promise<IUser> {
     return await this.userService.getUserByToken(token);
   }
 }
