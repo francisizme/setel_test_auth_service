@@ -3,13 +3,15 @@ import { Transport } from '@nestjs/microservices';
 
 import { AppModule } from './app.module';
 
+import config from './config';
+
 async function bootstrap() {
-  const port = 4000;
+  const port = config.servicePort;
   const app = await NestFactory.createMicroservice(AppModule, {
     transport: Transport.RMQ,
     options: {
-      urls: ['amqp://localhost:5672'],
-      queue: 'auth_queue',
+      urls: [config.amqp.url],
+      queue: config.amqp.queue,
       queueOptions: {
         durable: false,
       },
