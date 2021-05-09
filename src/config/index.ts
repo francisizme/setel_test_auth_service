@@ -35,6 +35,9 @@ export default {
     user: process.env.DATABASE_USER,
     pass: process.env.DATABASE_PASS,
     dbName: process.env.DATABASE_NAME,
+    synchronize: process.env.DATABASE_SYNC
+      ? JSON.parse(process.env.DATABASE_SYNC) || false
+      : false,
   },
 
   redis: {

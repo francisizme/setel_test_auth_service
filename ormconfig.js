@@ -9,7 +9,7 @@ module.exports = {
   password: config.database.pass,
   database: config.database.dbName,
   entities: ['dist/src/modules/**/entities/*.entity.js'],
-  synchronize: true,
+  synchronize: config.database.synchronize,
   migrationsTableName: 'migrations',
   migrations: ['dist/database/migration/*.js'],
   cli: {
